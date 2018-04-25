@@ -1,3 +1,39 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
     text-align: center;
+}
+
+#panel {
+  max-width: 505px;
+  width: 100%;
+  margin: 0 auto -1em;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2em;
+}
+
+#panel li {
+  display: block;
+  width: 100px;
+  border: 1px solid black;
+  text-align: left;
+}
+
+#panel li span {
+  display: block;
+  float: right;
+  width: 50px;
+  height: 1em;
+  background: #dadada;
+  text-align: right;
 }
