@@ -20,6 +20,13 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
 };
 
+Enemy.prototype.enemyRow = function() {
+  let enemyRow = [60,140,220];
+  let indexRow = Math.floor(Math.random()*3);
+  let enemyPos = enemyRow[enemyIndex];
+  return enemyPos;
+}
+
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
