@@ -18,22 +18,34 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 2em;
 }
 
 #panel li {
   display: block;
-  width: 100px;
+  width: 110px;
   border: 1px solid black;
   text-align: left;
 }
 
-#panel li span {
+#panel > li > span {
   display: block;
   float: right;
   width: 50px;
   height: 1em;
   background: #dadada;
   text-align: right;
+}
+
+.levelUp {
+  width: 100%;
+  color: blue;
+}
+
+.levelUp span {
+  width: 20px;
+  height: 1em;
+  display: inline-block;
+  background: #dadada;
 }
