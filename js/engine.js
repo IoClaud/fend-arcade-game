@@ -88,6 +88,10 @@ var Engine = (function(global) {
       panelScore.innerHTML = panel.score;
       updateEntities(dt);
       checkCollisions();
+      if (panel.lives === 0) {
+        alert('You Die!');
+        reset();
+      }
     }
 
     /* This is called by the update function and loops through all of the
@@ -177,7 +181,12 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        allEnemies = [];
+        panel.lives = 5;
+        panel.score = 0;
+        panel.level = 1;
+        enemyGenerator(panel.level);
+        player.reset();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
