@@ -37,6 +37,8 @@ Enemy.prototype.checkCollision = function() {
   if (this.y === player.y) {
     if (player.x >= this.x - 50 && player.x <= this.x + 50) {
       console.log('collision!');
+      pannel.lives --;
+      console.log(pannel.lives);
       return true;
     }
   }
@@ -49,6 +51,8 @@ var Player = function(x,y) {
   this.sprite = 'images/char-boy.png';
   this.x = x;
   this.y = y;
+  this.lives = 5;
+  this.point = 0;
 }
 
 // Check if the player has won
@@ -56,6 +60,8 @@ Player.prototype.update = function(dt) {
   // If yes, make the winning popup appears
   if (player.y < 0) {
     console.log('winner');
+    pannel.point +=50;
+    console.log(pannel.point);
     this.reset();
   }
 };
@@ -87,6 +93,12 @@ Player.prototype.handleInput = function(keycode) {
 Player.prototype.reset = function() {
   player.x = 200;
   player.y = 380;
+}
+
+var pannel = {
+  level: 1,
+  lives: 5,
+  point: 0,
 }
 
 function enemyRow() {
