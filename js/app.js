@@ -33,6 +33,15 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Enemy.prototype.checkCollision = function() {
+  if (this.y === player.y) {
+    if (player.x >= this.x - 50 && player.x <= this.x + 50) {
+      console.log('collision!');
+      return true;
+    }
+  }
+}
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -47,7 +56,7 @@ Player.prototype.update = function(dt) {
   // If yes, make the winning popup appears
   if (player.y < 0) {
     console.log('winner');
-    playerReset();
+    this.reset();
   }
 };
 
@@ -75,7 +84,7 @@ Player.prototype.handleInput = function(keycode) {
   }
 };
 
-function playerReset() {
+Player.prototype.reset = function() {
   player.x = 200;
   player.y = 380;
 }
