@@ -45,7 +45,8 @@ var Player = function(x,y) {
 // Check if the player has won
 Player.prototype.update = function(dt) {
   // If yes, make the winning popup appears
-  if (player.y === 0) {
+  if (player.y < 0) {
+    console.log('winner');
     playerReset();
   }
 };
@@ -60,7 +61,7 @@ Player.prototype.handleInput = function(keycode) {
   // Move the player accordingly to the key pressed
   switch (keycode) {
     case 'up':
-      if (player.y - 80 >= 0) player.y -= 80;
+      if (player.y - 80 >= -20) player.y -= 80;
     break;
     case 'down':
       if (player.y + 80 <= 380) player.y += 80;
