@@ -24,17 +24,6 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
-function enemyRow() {
-  let row = [60,140,220];
-  let indexRow = Math.floor(Math.random()*3);
-  let yPos = row[indexRow];
-  return yPos;
-}
-
-function enemyXpos() {
-  return Math.floor(Math.random()*(-300))-50;
-}
-
 Enemy.prototype.randomSpeed = function(){
   this.speed = Math.floor(Math.random() * (level*100 +(10/level*10))+level*10);
 }
@@ -57,7 +46,7 @@ var Player = function(x,y) {
 Player.prototype.update = function(dt) {
   // If yes, make the winning popup appears
   if (player.y === 0) {
-    reset();
+    playerReset();
   }
 };
 
@@ -71,23 +60,34 @@ Player.prototype.handleInput = function(keycode) {
   // Move the player accordingly to the key pressed
   switch (keycode) {
     case 'up':
-      if (player.y - 120 >= 0) player.y -= 120;
+      if (player.y - 80 >= 0) player.y -= 80;
     break;
     case 'down':
-      if (player.y + 120 <= 600) player.y += 120;
+      if (player.y + 80 <= 380) player.y += 80;
     break;
     case 'left':
-      if (player.x - 120 >= 0) player.x -= 120;
+      if (player.x - 100 >= 0) player.x -= 100;
     break;
     case 'right':
-      if (player.x + 120 <= 480) player.x += 120;
+      if (player.x + 100 <= 400) player.x += 100;
     break;
   }
 };
 
-function reset () {
-  player.x = 240;
-  player.y = 600;
+function playerReset() {
+  player.x = 200;
+  player.y = 380;
+}
+
+function enemyRow() {
+  let row = [60,140,220];
+  let indexRow = Math.floor(Math.random()*3);
+  let yPos = row[indexRow];
+  return yPos;
+}
+
+function enemyXpos() {
+  return Math.floor(Math.random()*(-300))-50;
 }
 
 
@@ -103,7 +103,7 @@ function enemyGenerator(level) {
 }
 
 level = 1;
-let player = new Player(240,600);
+let player = new Player(200,380);
 enemyGenerator(level);
 // Place the player object in a variable called player
 
