@@ -37,8 +37,8 @@ Enemy.prototype.checkCollision = function() {
   if (this.y === player.y) {
     if (player.x >= this.x - 50 && player.x <= this.x + 50) {
       console.log('collision!');
-      pannel.lives --;
-      console.log(pannel.lives);
+      panel.lives --;
+      console.log(panel.lives);
       return true;
     }
   }
@@ -51,8 +51,6 @@ var Player = function(x,y) {
   this.sprite = 'images/char-boy.png';
   this.x = x;
   this.y = y;
-  this.lives = 5;
-  this.point = 0;
 }
 
 // Check if the player has won
@@ -60,8 +58,8 @@ Player.prototype.update = function(dt) {
   // If yes, make the winning popup appears
   if (player.y < 0) {
     console.log('winner');
-    pannel.point +=50;
-    console.log(pannel.point);
+    panel.score +=50;
+    console.log(panel.score);
     this.reset();
   }
 };
@@ -94,11 +92,28 @@ Player.prototype.reset = function() {
   player.x = 200;
   player.y = 380;
 }
-
-var pannel = {
+let ctr = true;
+var panel = {
   level: 1,
   lives: 5,
-  point: 0,
+  score: 0,
+  levelUp: function(){
+    let upLev = 150*this.level;
+    if(ctr) {
+      if(this.score/150>=1){
+        if(this.score%150 == 0) {
+          console.log('livello su');
+          this.level++;
+          ctr = false;
+          console.log(ctr);
+        }
+      }
+    }
+    if(this.score % 150 == 50) {
+      ctr = true;
+    }
+    return upLev-this.score;
+  }
 }
 
 function enemyRow() {

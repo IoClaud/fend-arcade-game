@@ -22,7 +22,11 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        panelLives = document.querySelector('.lives span'),
+        panelLevel = document.querySelector('.level span'),
+        panelLevelUp = document.querySelector('.levelUp span'),
+        panelScore = document.querySelector('.score span');
 
     canvas.width = 505;
     canvas.height = 606;
@@ -78,8 +82,12 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        updateEntities(dt);
-        checkCollisions();
+      panelLives.innerHTML = panel.lives;
+      panelLevel.innerHTML = panel.level;
+      panelLevelUp.innerHTML = panel.levelUp();
+      panelScore.innerHTML = panel.score;
+      updateEntities(dt);
+      checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -102,8 +110,8 @@ var Engine = (function(global) {
           player.reset();
         }
       })
-
     }
+
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every

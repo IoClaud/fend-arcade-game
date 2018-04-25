@@ -25,8 +25,8 @@ body {
 #panel li {
   display: block;
   width: 110px;
-  border: 1px solid black;
   text-align: left;
+  border-bottom: 1px solid #666;
 }
 
 #panel > li > span {
@@ -34,7 +34,6 @@ body {
   float: right;
   width: 50px;
   height: 1em;
-  background: #dadada;
   text-align: right;
 }
 
@@ -44,8 +43,6 @@ body {
 }
 
 .levelUp span {
-  width: 20px;
-  height: 1em;
-  display: inline-block;
-  background: #dadada;
+  display: block;
+  float: right;
 }
