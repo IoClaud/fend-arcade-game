@@ -32,7 +32,7 @@ function enemyRow() {
 }
 
 Enemy.prototype.randomSpeed = function(){
-  this.speed = Math.floor(Math.random() * (level*100 +150))+50;
+  this.speed = Math.floor(Math.random() * (level*100 +(10/level*10))+level*10);
 }
 
 // Draw the enemy on the screen, required method for game
@@ -49,12 +49,15 @@ Enemy.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 let allEnemies = [];
 function enemyGenerator(level) {
-  for (i=0; i<level+3; i++) {
+  for (i=0; i<level+2; i++) {
     enemy = new Enemy(-100, enemyRow());
     enemy.randomSpeed();
     allEnemies.push(enemy);
   }
 }
+
+level = 5;
+enemyGenerator(level);
 // Place the player object in a variable called player
 
 
