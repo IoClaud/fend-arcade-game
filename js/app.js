@@ -25,7 +25,7 @@ Enemy.prototype.update = function(dt) {
 };
 
 Enemy.prototype.randomSpeed = function(){
-  this.speed = Math.floor(Math.random() * (level*100 +(10/level*10))+level*10);
+  this.speed = Math.floor(Math.random() * (panel.level*100 +(10/panel.level*10))+panel.level*10);
 }
 
 // Draw the enemy on the screen, required method for game
@@ -104,6 +104,9 @@ var panel = {
         if(this.score%150 == 0) {
           console.log('livello su');
           this.level++;
+          enemy = new Enemy(enemyXpos(), enemyRow());
+          enemy.randomSpeed();
+          allEnemies.push(enemy);
           ctr = false;
           console.log(ctr);
         }
@@ -139,9 +142,8 @@ function enemyGenerator(level) {
   }
 }
 
-level = 1;
 let player = new Player(200,380);
-enemyGenerator(level);
+enemyGenerator(panel.level);
 // Place the player object in a variable called player
 
 
