@@ -18,7 +18,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
     if (this.x > 550) {
-      this.x = -100;
+      this.x = enemyXpos();
       this.y = enemyRow();
       this.randomSpeed();
     }
@@ -27,8 +27,12 @@ Enemy.prototype.update = function(dt) {
 function enemyRow() {
   let row = [60,140,220];
   let indexRow = Math.floor(Math.random()*3);
-  let enemyPos = row[indexRow];
-  return enemyPos;
+  let yPos = row[indexRow];
+  return yPos;
+}
+
+function enemyXpos() {
+  return Math.floor(Math.random()*(-300))-50;
 }
 
 Enemy.prototype.randomSpeed = function(){
@@ -50,13 +54,13 @@ Enemy.prototype.render = function() {
 let allEnemies = [];
 function enemyGenerator(level) {
   for (i=0; i<level+2; i++) {
-    enemy = new Enemy(-100, enemyRow());
+    enemy = new Enemy(enemyXpos(), enemyRow());
     enemy.randomSpeed();
     allEnemies.push(enemy);
   }
 }
 
-level = 5;
+level = 1;
 enemyGenerator(level);
 // Place the player object in a variable called player
 
