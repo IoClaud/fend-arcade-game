@@ -47,6 +47,48 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+var Player = function(x,y) {
+  this.sprite = 'images/char-boy.png';
+  this.x = x;
+  this.y = y;
+}
+
+// Check if the player has won
+Player.prototype.update = function(dt) {
+  // If yes, make the winning popup appears
+  if (player.y === 0) {
+    reset();
+  }
+};
+
+// Draw the player on the screen
+Player.prototype.render = function() {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Manage the player's movement by using the arrow keys
+Player.prototype.handleInput = function(keycode) {
+  // Move the player accordingly to the key pressed
+  switch (keycode) {
+    case 'up':
+      if (player.y - 120 >= 0) player.y -= 120;
+    break;
+    case 'down':
+      if (player.y + 120 <= 600) player.y += 120;
+    break;
+    case 'left':
+      if (player.x - 120 >= 0) player.x -= 120;
+    break;
+    case 'right':
+      if (player.x + 120 <= 480) player.x += 120;
+    break;
+  }
+};
+
+function reset () {
+  player.x = 240;
+  player.y = 600;
+}
 
 
 // Now instantiate your objects.
@@ -61,6 +103,7 @@ function enemyGenerator(level) {
 }
 
 level = 1;
+let player = new Player(240,600);
 enemyGenerator(level);
 // Place the player object in a variable called player
 
