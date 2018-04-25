@@ -18,8 +18,8 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
     if (this.x > 550) {
-      this.x = enemyXpos();
-      this.y = enemyRow();
+      this.x = makeXpos(-300);
+      this.y = makeRow();
       this.randomSpeed();
     }
 };
@@ -104,7 +104,7 @@ var panel = {
         if(this.score%150 == 0) {
           console.log('livello su');
           this.level++;
-          enemy = new Enemy(enemyXpos(), enemyRow());
+          enemy = new Enemy(makeXpos(-300), makeRow());
           enemy.randomSpeed();
           allEnemies.push(enemy);
           ctr = false;
@@ -119,15 +119,26 @@ var panel = {
   }
 }
 
-function enemyRow() {
+var Gem = function (url) {
+  this.sprite = url;
+  this.x = x;
+  this.y = y;
+}
+
+// Draw the gem on the screen
+Gem.prototype.render = function() {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+function makeRow() {
   let row = [60,140,220];
   let indexRow = Math.floor(Math.random()*3);
   let yPos = row[indexRow];
   return yPos;
 }
 
-function enemyXpos() {
-  return Math.floor(Math.random()*(-300))-50;
+function makeXpos(x) {
+  return Math.floor(Math.random()*(x))-50;
 }
 
 
@@ -136,7 +147,7 @@ function enemyXpos() {
 let allEnemies = [];
 function enemyGenerator(level) {
   for (i=0; i<level+2; i++) {
-    enemy = new Enemy(enemyXpos(), enemyRow());
+    enemy = new Enemy(makeXpos(-300), makeRow());
     enemy.randomSpeed();
     allEnemies.push(enemy);
   }
