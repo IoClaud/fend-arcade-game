@@ -6,13 +6,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <ul id="panel">
+  <ul id="score-panel">
     <li class="lives">Lives: <span></span></li>
     <li class="level">Level: <span></span>
-      <div class="levelUp">Up to <span></span></div>
+      <div class="levelUp">Up to <span></span> pts.</div>
     </li>
     <li class="score">Score: <span></span></li>
   </ul>
+  <div class="overlay hidden">
+    <div class="starterPanel">
+      <form name="character">
+        <label for="boy"><input id="boy" type="radio" name="char" value="boy" checked></label>
+        <label for="cat"><input id="cat" type="radio" name="char" value="cat"></label>
+        <label for="horn"><input id="horn" type="radio" name="char" value="horn"></label>
+        <label for="pink"><input id="pink" type="radio" name="char" value="pink"></label>
+        <label for="princess"><input id="princess" type="radio" name="char" value="princess"></label>
+      </form>
+    </div>
+    <div class="finishPanel">
+
+    </div>
+  </div>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>

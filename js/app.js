@@ -119,22 +119,18 @@ var panel = {
   }
 }
 
-var Gem = function (url) {
-  this.sprite = url;
-  this.x = x;
-  this.y = y;
-}
-
-// Draw the gem on the screen
-Gem.prototype.render = function() {
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
 function makeRow() {
   let row = [60,140,220];
   let indexRow = Math.floor(Math.random()*3);
   let yPos = row[indexRow];
   return yPos;
+}
+
+function makeCol() {
+  let col = [0,100,200,300,400];
+  let indexRow = Math.floor(Math.random()*5);
+  let colPos = col[indexRow];
+  return colPos;
 }
 
 function makeXpos(x) {

@@ -10,7 +10,7 @@ body {
     text-align: center;
 }
 
-#panel {
+#score-panel {
   max-width: 505px;
   width: 100%;
   margin: 0 auto -1em;
@@ -22,14 +22,14 @@ body {
   padding-top: 2em;
 }
 
-#panel li {
+#score-panel li {
   display: block;
   width: 110px;
   text-align: left;
   border-bottom: 1px solid #666;
 }
 
-#panel > li > span {
+#score-panel > li > span {
   display: block;
   float: right;
   width: 50px;
@@ -43,6 +43,85 @@ body {
 }
 
 .levelUp span {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #dadada;
+}
+
+.overlay .starterPanel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.overlay .starterPanel label {
+  position: relative;
+  display: inline-block;
+  margin: 0 2em 2em 0;
+  width: 100px;
+  height: 130px;
+  background: #fff;
+  background-size: 100%;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+
+.overlay .starterPanel label input[type="radio"] {
   display: block;
-  float: right;
+  position: absolute;
+  bottom: -20px;
+  left: 20%;
+}
+
+.overlay .starterPanel label input[type="radio"]::after {
+  margin-left: 2em;
+}
+
+.overlay .starterPanel label[for="boy"] {
+  background-image: url('../images/char-boy.png');
+}
+
+.overlay .starterPanel label[for="cat"] {
+  background-image: url('../images/char-cat-girl.png');
+}
+
+.overlay .starterPanel label[for="horn"] {
+  background-image: url('../images/char-horn-girl.png');
+}
+
+.overlay .starterPanel label[for="pink"] {
+  background-image: url('../images/char-pink-girl.png');
+}
+
+.overlay .starterPanel label[for="princess"] {
+  background-image: url('../images/char-princess-girl.png');
+}
+
+#boy::after {
+  content:'Boy';
+}
+
+#cat::after {
+  content:'Cat';
+}
+
+#horn::after {
+  content:'Horn';
+}
+
+#pink::after {
+  content:'Pink';
+}
+
+#princess::after {
+  content:'Princess';
 }
