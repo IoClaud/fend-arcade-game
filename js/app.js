@@ -19,10 +19,10 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
 };
 
-Enemy.prototype.enemyRow = function() {
-  let enemyRow = [60,140,220];
+function enemyRow() {
+  let row = [60,140,220];
   let indexRow = Math.floor(Math.random()*3);
-  let enemyPos = enemyRow[enemyIndex];
+  let enemyPos = row[indexRow];
   return enemyPos;
 }
 
@@ -42,6 +42,14 @@ Enemy.prototype.render = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+let allEnemies = [];
+function enemyGenerator(level) {
+  for (i=0; i<level+3; i++) {
+    enemy = new Enemy(-100, enemyRow());
+    enemy.randomSpeed();
+    allEnemies.push(enemy);
+  }
+}
 // Place the player object in a variable called player
 
 
