@@ -10,6 +10,23 @@ body {
     text-align: center;
 }
 
+button.start {
+  font-size: 1.5em;
+  padding: 0.7em 1em;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+              0 3px 1px -2px rgba(0, 0, 0, .2),
+              0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+fieldset {
+  border: none;
+}
+
+/****************************
+ * Styles for the Score Panel
+ ****************************/
+
 #score-panel {
   max-width: 505px;
   width: 100%;
@@ -48,22 +65,47 @@ body {
   text-align: center;
 }
 
+ /****************************
+  * Styles for the Overlay
+  ****************************/
+
 .overlay {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  flex-direction: row;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/****************************
+ * Styles for the Starter Panel
+ ****************************/
+
+.starterPanel {
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+              0 3px 1px -2px rgba(0, 0, 0, .2),
+              0 1px 5px 0 rgba(0, 0, 0, .12);
+  padding: 2em;
   background: #dadada;
 }
 
-.overlay .starterPanel {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
+@media only screen and (min-width:505px) {
+  .starterPanel {
+    max-width: 505px;
+  }
 }
-.overlay .starterPanel label {
+
+.starterPanel h2 {
+  margin-bottom: 1em;
+}
+
+.starterPanel label {
   position: relative;
   display: inline-block;
   margin: 0 2em 2em 0;
@@ -75,34 +117,34 @@ body {
   background-repeat: no-repeat;
 }
 
-.overlay .starterPanel label input[type="radio"] {
+.starterPanel label input[type="radio"] {
   display: block;
   position: absolute;
   bottom: -20px;
   left: 20%;
 }
 
-.overlay .starterPanel label input[type="radio"]::after {
+.starterPanel label input[type="radio"]::after {
   margin-left: 2em;
 }
 
-.overlay .starterPanel label[for="boy"] {
+.starterPanel label[for="boy"] {
   background-image: url('../images/char-boy.png');
 }
 
-.overlay .starterPanel label[for="cat"] {
+.starterPanel label[for="cat"] {
   background-image: url('../images/char-cat-girl.png');
 }
 
-.overlay .starterPanel label[for="horn"] {
+.starterPanel label[for="horn"] {
   background-image: url('../images/char-horn-girl.png');
 }
 
-.overlay .starterPanel label[for="pink"] {
+.starterPanel label[for="pink"] {
   background-image: url('../images/char-pink-girl.png');
 }
 
-.overlay .starterPanel label[for="princess"] {
+.starterPanel label[for="princess"] {
   background-image: url('../images/char-princess-girl.png');
 }
 
@@ -125,3 +167,12 @@ body {
 #princess::after {
   content:'Princess';
 }
+
+/****************************
+ * Styles for the Finish Panel
+ ****************************/
+
+
+ /****************************
+  * Animation
+  ****************************/
