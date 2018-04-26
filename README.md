@@ -37,7 +37,7 @@ If you are using a mobile device or just don't want to download anyting, you can
 
 ### Rating
 
-The game assigns **50** points each time the water is reached and increases by **1** level each time _150 points_ are accumulated. At each level increase, the game increases the number of enemies to avoid and their speed of crossing the field.
+The game assigns **50** points each time the water is reached and increases by **1** level each time **150 points** are accumulated. At each level increase, the game _increases the number of enemies_ to avoid and _their speed_ of crossing the field.
 
 ## To develop
 
