@@ -1,3 +1,51 @@
+var button = document.querySelector('.start');
+var content = document.querySelector('.overlay');
+var checkChar;
+button.addEventListener('click', toggleDisclosure);
+button.addEventListener('keydown', toggleDisclosure);
+function toggleDisclosure(e) {
+  var type = e.type;
+
+  // If the key pressed was not Space or Enter, return
+  if (type === 'keydown' && (e.keyCode !== 13 && e.keyCode !== 32)) {
+    return true;
+  }
+
+  e.preventDefault();
+
+  if (content.getAttribute('aria-hidden') === 'true') {
+    content.setAttribute('aria-hidden', 'false');
+
+  } else {
+    content.setAttribute('aria-hidden', 'true');
+    checkChar = document.forms.character.char.value;
+    setChar(checkChar);
+    console.log(checkChar);
+  }
+}
+
+function setChar(char) {
+
+  switch(char) {
+    case 'boy':
+      player.sprite = 'images/char-boy.png';
+    break;
+    case 'cat':
+      player.sprite = 'images/char-cat-girl.png';
+    break;
+    case 'horn':
+      player.sprite = 'images/char-horn-girl.png';
+    break;
+    case 'pink':
+      player.sprite = 'images/char-pink-girl.png';
+    break;
+    case 'princess':
+      player.sprite = 'images/char-princess-girl.png';
+    break;
+  }
+}
+
+
 // Enemies our player must avoid
 var Enemy = function(x,y) {
     // Variables applied to each of our instances go here,
@@ -148,7 +196,6 @@ function enemyGenerator(level) {
     allEnemies.push(enemy);
   }
 }
-
 let player = new Player(200,380);
 enemyGenerator(panel.level);
 // Place the player object in a variable called player
