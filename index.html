@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <div id="score-panel">
     <h1>Arcade Game</h1>
     <ul class="score-container">
@@ -16,8 +17,10 @@
     </ul>
     <div class="levelUp">Up to <span></span> pts.</div>
     <button class="restart top">Restart</button>
-  </div>
+  </div> <!-- /#score-panel -->
+
   <div class="overlay" aria-hidden="true">
+
     <div class="starterPanel" aria-hidden="true">
         <h2>Choose Your Character</h2>
       <form name="character">
@@ -30,7 +33,8 @@
         </fieldset>
         <button type="submit" class="start">Start</button>
       </form>
-    </div>
+    </div> <!-- /.starterPanel -->
+
     <div class="finishPanel" aria-hidden="false">
       <h3>Congratulations</h3>
       <h2>You Die!</h2>
@@ -40,8 +44,10 @@
         <li class="score">Score: <span></span></li>
       </ul>
       <button class="restart finish">Restart</button>
-    </div>
-  </div>
+    </div> <!-- /.finishPanel -->
+
+  </div> <!-- /.overlay -->
+  
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
