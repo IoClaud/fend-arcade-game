@@ -198,7 +198,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+
 
     ]);
     Resources.onReady(init);
@@ -209,3 +214,29 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
 })(this);
+
+var button = document.querySelector('.start');
+var content = document.querySelector('.overlay');
+var checkChar ;
+button.addEventListener('click', toggleDisclosure);
+button.addEventListener('keydown', toggleDisclosure);
+function toggleDisclosure(e) {
+  var type = e.type;
+
+  // If the key pressed was not Space or Enter, return
+  if (type === 'keydown' && (e.keyCode !== 13 && e.keyCode !== 32)) {
+    return true;
+  }
+
+  e.preventDefault();
+
+  if (content.getAttribute('aria-hidden') === 'true') {
+    content.setAttribute('aria-hidden', 'false');
+
+  } else {
+    content.setAttribute('aria-hidden', 'true');
+    checkChar = document.forms.character.char.value;
+
+    console.log(checkChar);
+  }
+}
