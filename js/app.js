@@ -1,18 +1,21 @@
-var button = document.querySelector('.start');
+// select button start
+var startBtn = document.querySelector('.start');
 var overlay = document.querySelector('.overlay');
-var starter = document.querySelector('.starterPanel');
-var finish = document.querySelector('.finishPanel');
+var startPnl = document.querySelector('.starterPanel');
+var finishPnl = document.querySelector('.finishPanel');
 var checkChar;
-button.addEventListener('click', toggleDisclosure);
-button.addEventListener('keydown', toggleDisclosure);
-function toggleDisclosure(e) {
-  var type = e.type;
 
+
+startBtn.addEventListener('click', toggleDisclosure);
+startBtn.addEventListener('keydown', toggleDisclosure);
+
+// when start button is activated it change the visibility of overlay div, show the game, change the sprite of the character and reset the player initial position.
+function toggleDisclosure(e) {
+  let type = e.type;
   // If the key pressed was not Space or Enter, return
   if (type === 'keydown' && (e.keyCode !== 13 && e.keyCode !== 32)) {
     return true;
   }
-
   e.preventDefault();
 
   if (overlay.getAttribute('aria-hidden') === 'true') {
@@ -20,15 +23,14 @@ function toggleDisclosure(e) {
     checkChar = document.forms.character.char.value;
     setChar(checkChar);
     player.reset();
-    console.log(checkChar);
   } else {
     overlay.setAttribute('aria-hidden', 'true');
 
   }
 }
 
+// Change the sprite of the character accordingly to the selected one
 function setChar(char) {
-
   switch(char) {
     case 'boy':
       player.sprite = 'images/char-boy.png';
@@ -68,6 +70,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
+    // when the enemies are out of screen, recalculate their initial position and speed
     if (this.x > 550) {
       this.x = makeXpos(-300);
       this.y = makeRow();
@@ -75,6 +78,7 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
+// Whenever the enemy leaves the screen, its speed is recalculated considering the current game level.
 Enemy.prototype.randomSpeed = function(){
   this.speed = Math.floor(Math.random() * (panel.level*100 +(10/panel.level*10))+panel.level*10);
 }
@@ -84,6 +88,8 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Check if the enemy is at the same location as the player
+// If true, reset the position of the player
 Enemy.prototype.checkCollision = function() {
   if (this.y === player.y) {
     if (player.x >= this.x - 50 && player.x <= this.x + 50) {
@@ -106,11 +112,9 @@ var Player = function(x,y) {
 
 // Check if the player has won
 Player.prototype.update = function(dt) {
-  // If yes, make the winning popup appears
+  // If yes, the score up to 50 points and the player restart to the initial position.
   if (player.y < 0) {
-    console.log('winner');
     panel.score +=50;
-    console.log(panel.score);
     this.reset();
   }
 };
@@ -139,11 +143,13 @@ Player.prototype.handleInput = function(keycode) {
   }
 };
 
+// reset the player to the initial position
 Player.prototype.reset = function() {
   player.x = 200;
   player.y = 380;
 }
 
+// the panel object to restore the games data.
 let ctr = true;
 var panel = {
   level: 1,
@@ -151,26 +157,29 @@ var panel = {
   score: 0,
   levelUp: function(){
     let upLev = 150*this.level;
+    // when ctr variable (the controller variable) is true, check for the level update:
+    // if checked, add 1 enemy and set ctr variable to false.
     if(ctr) {
       if(this.score/150>=1){
         if(this.score%150 == 0) {
-          console.log('livello su');
           this.level++;
           enemy = new Enemy(makeXpos(-300), makeRow());
           enemy.randomSpeed();
           allEnemies.push(enemy);
           ctr = false;
-          console.log(ctr);
         }
       }
     }
+    // to the next score increment, open the controller variable for the next level update.
     if(this.score % 150 == 50) {
       ctr = true;
     }
+    // returns the score difference, to write on the board
     return upLev-this.score;
   }
 }
 
+// sets the starting line in which to run the enemy
 function makeRow() {
   let row = [60,140,220];
   let indexRow = Math.floor(Math.random()*3);
@@ -178,6 +187,7 @@ function makeRow() {
   return yPos;
 }
 
+// this is for set the Gem position but it's not implemented for now.
 function makeCol() {
   let col = [0,100,200,300,400];
   let indexRow = Math.floor(Math.random()*5);
@@ -185,6 +195,7 @@ function makeCol() {
   return colPos;
 }
 
+// set initial random x position.
 function makeXpos(x) {
   return Math.floor(Math.random()*(x))-50;
 }
