@@ -19,6 +19,7 @@ function toggleDisclosure(e) {
     overlay.setAttribute('aria-hidden', 'false');
     checkChar = document.forms.character.char.value;
     setChar(checkChar);
+    player.reset();
     console.log(checkChar);
   } else {
     overlay.setAttribute('aria-hidden', 'true');
