@@ -83,32 +83,32 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
+      // write data on the board
       panelLives.innerHTML = panel.lives;
       panelLevel[0].innerHTML = panel.level;
       panelLevelUp.innerHTML = panel.levelUp();
       panelScore[0].innerHTML = panel.score;
       updateEntities(dt);
       checkCollisions();
+      // if lives == 0 open the finish panel with the game scores.
       if (panel.lives === 0) {
-        //alert('You Die!');
         overlay.setAttribute('aria-hidden','true');
-        starter.setAttribute('aria-hidden','false');
+        startPnl.setAttribute('aria-hidden','false');
         panelLevel[1].innerHTML = panel.level;
         panelScore[1].innerHTML = panel.score;
-        finish.setAttribute('aria-hidden','true');
+        finishPnl.setAttribute('aria-hidden','true');
       }
     }
 
-    console.log(restore[0]);
-    console.log(restore[1]);
-    console.log(overlay);
-
+    //add event listener for each restart button
     restore.forEach(function(element) {
       element.addEventListener('click', restart);
       element.addEventListener('keydown', restart);
     });
 
-
+    // if one restart button is clicked, restart game:
+    // open starter panel to select new character
+    // reset the game data and player position
     function restart(e){
       var type = e.type;
       // If the key pressed was not Space or Enter, return
@@ -118,8 +118,8 @@ var Engine = (function(global) {
       e.preventDefault();
 
       overlay.setAttribute('aria-hidden', 'true');
-      starter.setAttribute('aria-hidden', 'true');
-      finish.setAttribute('aria-hidden', 'false');
+      startPnl.setAttribute('aria-hidden', 'true');
+      finishPnl.setAttribute('aria-hidden', 'false');
       reset();
     }
 
@@ -209,6 +209,7 @@ var Engine = (function(global) {
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
+     // empty the enemies array, reset player position, reset game data, generate new enemies
     function reset() {
       allEnemies = [];
       player.reset();
