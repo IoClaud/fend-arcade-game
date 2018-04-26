@@ -6,13 +6,16 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <ul id="score-panel">
-    <li class="lives">Lives: <span></span></li>
-    <li class="level">Level: <span></span>
-      <div class="levelUp">Up to <span></span> pts.</div>
-    </li>
-    <li class="score">Score: <span></span></li>
-  </ul>
+  <div id="score-panel">
+    <h1>Arcade Games</h1>
+    <ul class="score-container">
+      <li class="lives">Lives: <span></span></li>
+      <li class="level">Level: <span></span>
+      </li>
+      <li class="score">Score: <span></span></li>
+    </ul>
+    <div class="levelUp">Up to <span></span> pts.</div>
+  </div>
   <div class="overlay" aria-hidden="false">
     <div class="starterPanel">
         <h2>Choose Your Character</h2>
@@ -28,6 +31,13 @@
       </form>
     </div>
     <div class="finishPanel">
+      <h3>Congratulations</h3>
+      <h2>You Die!</h2>
+      <ul class="score-container">
+        <li class="level">Level: <span></span>
+        </li>
+        <li class="score">Score: <span></span></li>
+      </ul>
 
     </div>
   </div>

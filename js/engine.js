@@ -23,10 +23,10 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
-        panelLives = document.querySelector('.lives span'),
-        panelLevel = document.querySelector('.level span'),
-        panelLevelUp = document.querySelector('.levelUp span'),
-        panelScore = document.querySelector('.score span');
+        panelLives = document.querySelectorAll('.lives span'),
+        panelLevel = document.querySelectorAll('.level span'),
+        panelLevelUp = document.querySelectorAll('.levelUp span'),
+        panelScore = document.querySelectorAll('.score span');
 
     canvas.width = 505;
     canvas.height = 606;
@@ -82,10 +82,10 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-      panelLives.innerHTML = panel.lives;
-      panelLevel.innerHTML = panel.level;
-      panelLevelUp.innerHTML = panel.levelUp();
-      panelScore.innerHTML = panel.score;
+      panelLives[0].innerHTML = panel.lives;
+      panelLevel[0].innerHTML = panel.level;
+      panelLevelUp[0].innerHTML = panel.levelUp();
+      panelScore[0].innerHTML = panel.score;
       updateEntities(dt);
       checkCollisions();
       if (panel.lives === 0) {
