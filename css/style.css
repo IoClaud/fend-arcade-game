@@ -10,16 +10,23 @@ body {
     text-align: center;
 }
 
-button.start {
-  font-size: 1.5em;
-  padding: 0.7em 1em;
+button.start,
+button.restart {
+  font-size: 1em;
+  padding: 0.5em 1em;
   border-radius: 5px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
               0 3px 1px -2px rgba(0, 0, 0, .2),
               0 1px 5px 0 rgba(0, 0, 0, .12);
+  margin-top: 0.5em;
 }
 
-button.start:hover, button.start:focus {
+
+
+button.start:hover,
+button.start:focus,
+button.restart:hover,
+button.restart:focus {
   background: #D81B60;
   color: white;
 }
@@ -97,35 +104,57 @@ fieldset {
   align-items: center;
 }
 
-.overlay[aria-hidden="true"] {
+.overlay[aria-hidden="false"] {
+  z-index: -100;
   visibility: hidden;
   opacity: 0;
 }
-.overlay[aria-hidden="false"] {
+.overlay[aria-hidden="true"] {
+  z-index: 100;
   visibility: visible;
   opacity: 1;
 }
 
 /****************************
- * Styles for the Starter Panel
+ * Styles for the Starter / Finish Panel
  ****************************/
 
-.starterPanel {
+.starterPanel,
+.finishPanel {
   width: 100%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
               0 3px 1px -2px rgba(0, 0, 0, .2),
               0 1px 5px 0 rgba(0, 0, 0, .12);
   padding: 2em;
   background: #dadada;
+  font-size: 2em;
+}
+
+.starterPanel[aria-hidden="false"],
+.finishPanel[aria-hidden="false"] {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+.starterPanel[aria-hidden="true"],
+.finishPanel[aria-hidden="true"] {
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 @media only screen and (min-width:505px) {
-  .starterPanel {
+  .starterPanel,
+  .finishPanel {
     max-width: 505px;
   }
 }
 
-.starterPanel h2 {
+.starterPanel h2,
+.finishPanel h2 {
+  margin-bottom: 1em;
+}
+.finishPanel h3 {
   margin-bottom: 1em;
 }
 
@@ -134,7 +163,7 @@ fieldset {
 
 }
 
-.starterPanel label {
+.starterPanel label{
   position: relative;
   width: 100px;
   height: 130px;
@@ -142,7 +171,7 @@ fieldset {
   background-size: 100%;
   background-position: bottom center;
   background-repeat: no-repeat;
-  margin: 1em;
+  margin: 0.5em 0.3em;
   display: inline-block;
   border-radius: 5px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
@@ -205,23 +234,29 @@ fieldset {
   content:'Princess';
 }
 
-/****************************
- * Styles for the Finish Panel
- ****************************/
- .finishPanel {
-   width: 100%;
-   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
-               0 3px 1px -2px rgba(0, 0, 0, .2),
-               0 1px 5px 0 rgba(0, 0, 0, .12);
-   padding: 2em;
-   background: #dadada;
- }
+.score-container {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
- @media only screen and (min-width:505px) {
-   .finishPanel {
-     max-width: 505px;
-   }
- }
+.score-container li {
+  display: block;
+  width: 110px;
+  text-align: left;
+  border-bottom: 1px solid #666;
+}
+
+.score-container li span {
+  display: block;
+  float: right;
+  width: 50px;
+  height: 1em;
+  text-align: right;
+}
+
 
  /****************************
   * Animation

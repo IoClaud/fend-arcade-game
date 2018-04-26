@@ -15,9 +15,10 @@
       <li class="score">Score: <span></span></li>
     </ul>
     <div class="levelUp">Up to <span></span> pts.</div>
+    <button class="restart top">Restart</button>
   </div>
-  <div class="overlay" aria-hidden="false">
-    <div class="starterPanel">
+  <div class="overlay" aria-hidden="true">
+    <div class="starterPanel" aria-hidden="true">
         <h2>Choose Your Character</h2>
       <form name="character">
         <fieldset>
@@ -30,7 +31,7 @@
         <button type="submit" class="start">Start</button>
       </form>
     </div>
-    <div class="finishPanel">
+    <div class="finishPanel" aria-hidden="false">
       <h3>Congratulations</h3>
       <h2>You Die!</h2>
       <ul class="score-container">
@@ -38,7 +39,7 @@
         </li>
         <li class="score">Score: <span></span></li>
       </ul>
-
+      <button class="restart finish">Restart</button>
     </div>
   </div>
     <script src="js/resources.js"></script>

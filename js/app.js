@@ -1,5 +1,7 @@
 var button = document.querySelector('.start');
-var content = document.querySelector('.overlay');
+var overlay = document.querySelector('.overlay');
+var starter = document.querySelector('.starterPanel');
+var finish = document.querySelector('.finishPanel');
 var checkChar;
 button.addEventListener('click', toggleDisclosure);
 button.addEventListener('keydown', toggleDisclosure);
@@ -13,14 +15,14 @@ function toggleDisclosure(e) {
 
   e.preventDefault();
 
-  if (content.getAttribute('aria-hidden') === 'true') {
-    content.setAttribute('aria-hidden', 'false');
-
-  } else {
-    content.setAttribute('aria-hidden', 'true');
+  if (overlay.getAttribute('aria-hidden') === 'true') {
+    overlay.setAttribute('aria-hidden', 'false');
     checkChar = document.forms.character.char.value;
     setChar(checkChar);
     console.log(checkChar);
+  } else {
+    overlay.setAttribute('aria-hidden', 'true');
+
   }
 }
 
@@ -140,6 +142,7 @@ Player.prototype.reset = function() {
   player.x = 200;
   player.y = 380;
 }
+
 let ctr = true;
 var panel = {
   level: 1,

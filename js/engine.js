@@ -23,10 +23,11 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
-        panelLives = document.querySelectorAll('.lives span'),
+        panelLives = document.querySelector('.lives span'),
         panelLevel = document.querySelectorAll('.level span'),
-        panelLevelUp = document.querySelectorAll('.levelUp span'),
+        panelLevelUp = document.querySelector('.levelUp span'),
         panelScore = document.querySelectorAll('.score span');
+        restore = document.querySelectorAll('.restart');
 
     canvas.width = 505;
     canvas.height = 606;
@@ -82,16 +83,44 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-      panelLives[0].innerHTML = panel.lives;
+      panelLives.innerHTML = panel.lives;
       panelLevel[0].innerHTML = panel.level;
-      panelLevelUp[0].innerHTML = panel.levelUp();
+      panelLevelUp.innerHTML = panel.levelUp();
       panelScore[0].innerHTML = panel.score;
       updateEntities(dt);
       checkCollisions();
       if (panel.lives === 0) {
-        alert('You Die!');
-        reset();
+        //alert('You Die!');
+        overlay.setAttribute('aria-hidden','true');
+        starter.setAttribute('aria-hidden','false');
+        panelLevel[1].innerHTML = panel.level;
+        panelScore[1].innerHTML = panel.score;
+        finish.setAttribute('aria-hidden','true');
       }
+    }
+
+    console.log(restore[0]);
+    console.log(restore[1]);
+    console.log(overlay);
+
+    restore.forEach(function(element) {
+      element.addEventListener('click', restart);
+      element.addEventListener('keydown', restart);
+    });
+
+
+    function restart(e){
+      var type = e.type;
+      // If the key pressed was not Space or Enter, return
+      if (type === 'keydown' && (e.keyCode !== 13 && e.keyCode !== 32)) {
+        return true;
+      }
+      e.preventDefault();
+
+      overlay.setAttribute('aria-hidden', 'true');
+      starter.setAttribute('aria-hidden', 'true');
+      finish.setAttribute('aria-hidden', 'false');
+      reset();
     }
 
     /* This is called by the update function and loops through all of the
@@ -181,12 +210,13 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        allEnemies = [];
-        panel.lives = 5;
-        panel.score = 0;
-        panel.level = 1;
-        enemyGenerator(panel.level);
-        player.reset();
+      allEnemies = [];
+      player.reset();
+      panel.lives = 5;
+      panel.score = 0;
+      panel.level = 1;
+      enemyGenerator(panel.level);
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
