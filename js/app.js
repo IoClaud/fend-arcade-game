@@ -93,9 +93,7 @@ Enemy.prototype.render = function() {
 Enemy.prototype.checkCollision = function() {
   if (this.y === player.y) {
     if (player.x >= this.x - 50 && player.x <= this.x + 50) {
-      console.log('collision!');
       panel.lives --;
-      console.log(panel.lives);
       return true;
     }
   }
@@ -113,7 +111,7 @@ var Player = function(x,y) {
 // Check if the player has won
 Player.prototype.update = function(dt) {
   // If yes, the score up to 50 points and the player restart to the initial position.
-  if (player.y < 0) {
+  if (this.y < 0) {
     panel.score +=50;
     this.reset();
   }
@@ -129,24 +127,24 @@ Player.prototype.handleInput = function(keycode) {
   // Move the player accordingly to the key pressed
   switch (keycode) {
     case 'up':
-      if (player.y - 80 >= -20) player.y -= 80;
+      if (this.y - 80 >= -20) this.y -= 80;
     break;
     case 'down':
-      if (player.y + 80 <= 380) player.y += 80;
+      if (this.y + 80 <= 380) this.y += 80;
     break;
     case 'left':
-      if (player.x - 100 >= 0) player.x -= 100;
+      if (this.x - 100 >= 0) this.x -= 100;
     break;
     case 'right':
-      if (player.x + 100 <= 400) player.x += 100;
+      if (this.x + 100 <= 400) this.x += 100;
     break;
   }
 };
 
 // reset the player to the initial position
 Player.prototype.reset = function() {
-  player.x = 200;
-  player.y = 380;
+  this.x = 200;
+  this.y = 380;
 }
 
 // the panel object to restore the games data.
@@ -211,10 +209,10 @@ function enemyGenerator(level) {
     allEnemies.push(enemy);
   }
 }
-let player = new Player(200,380);
+
 enemyGenerator(panel.level);
 // Place the player object in a variable called player
-
+let player = new Player(200,380);
 
 
 // This listens for key presses and sends the keys to your
