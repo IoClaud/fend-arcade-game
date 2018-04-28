@@ -4,6 +4,8 @@ var overlay = document.querySelector('.overlay');
 var startPnl = document.querySelector('.starterPanel');
 var finishPnl = document.querySelector('.finishPanel');
 var checkChar;
+var TILE_WIDTH = 101,
+    TILE_HEIGHT = 83;
 
 
 startBtn.addEventListener('click', toggleDisclosure);
@@ -91,7 +93,7 @@ Enemy.prototype.render = function() {
 // Check if the enemy is at the same location as the player
 // If true, reset the position of the player
 Enemy.prototype.checkCollision = function() {
-  if (this.y === player.y) {
+  if (this.y-15 === player.y) {
     if (player.x >= this.x - 50 && player.x <= this.x + 50) {
       panel.lives --;
       return true;
@@ -127,16 +129,16 @@ Player.prototype.handleInput = function(keycode) {
   // Move the player accordingly to the key pressed
   switch (keycode) {
     case 'up':
-      if (this.y - 80 >= -20) this.y -= 80;
+      if (this.y - TILE_HEIGHT >= -35) this.y -= TILE_HEIGHT;
     break;
     case 'down':
-      if (this.y + 80 <= 380) this.y += 80;
+      if (this.y + TILE_HEIGHT <= 380) this.y += TILE_HEIGHT;
     break;
     case 'left':
-      if (this.x - 100 >= 0) this.x -= 100;
+      if (this.x - TILE_WIDTH >= -2) this.x -= TILE_WIDTH;
     break;
     case 'right':
-      if (this.x + 100 <= 400) this.x += 100;
+      if (this.x + TILE_WIDTH <= 402) this.x += TILE_WIDTH;
     break;
   }
 };
@@ -179,17 +181,17 @@ var panel = {
 
 // sets the starting line in which to run the enemy
 function makeRow() {
-  let row = [60,140,220];
+  let row = [1,2,3];
   let indexRow = Math.floor(Math.random()*3);
-  let yPos = row[indexRow];
+  let yPos = row[indexRow]*(TILE_HEIGHT)-20;
   return yPos;
 }
 
 // this is for set the Gem position but it's not implemented for now.
 function makeCol() {
-  let col = [0,100,200,300,400];
+  let col = [0,1,2,3,4];
   let indexRow = Math.floor(Math.random()*5);
-  let colPos = col[indexRow];
+  let colPos = col[indexRow]*TILE_WIDTH;
   return colPos;
 }
 
@@ -212,7 +214,7 @@ function enemyGenerator(level) {
 
 enemyGenerator(panel.level);
 // Place the player object in a variable called player
-let player = new Player(200,380);
+let player = new Player(TILE_WIDTH*2,TILE_HEIGHT*5-20);
 
 
 // This listens for key presses and sends the keys to your
